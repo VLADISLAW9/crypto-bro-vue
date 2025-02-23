@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@primeuix/themes": "^1.0.0-rc.1",
+    "@siberiacancode/fetches": "^1.9.2",
     "@tailwindcss/vite": "^4.0.8",
     "primeicons": "^7.0.0",
     "primevue": "^4.2.5",

@@ -1,3 +1,6 @@
 export const ROUTES = {
-  HOME: '/'
+  HOME: '/',
+  FAVORITES: '/favorites',
+  PROFILE: '/profile',
+  SETTINGS: '/settings'
 } as const;

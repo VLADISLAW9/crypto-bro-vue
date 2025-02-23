@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { ROUTES } from './utils/constants';
+
 const links = [
-  { icon: 'pi pi-home', label: 'Главная', route: '/' },
-  { icon: 'pi pi-star', label: 'Избранное', route: '/favorites' },
-  { icon: 'pi pi-user', label: 'Профиль', route: '/profile' },
-  { icon: 'pi pi-cog', label: 'Настройки', route: '/settings' }
+  { icon: 'pi pi-home', label: 'Главная', route: ROUTES.HOME },
+  { icon: 'pi pi-star', label: 'Избранное', route: ROUTES.FAVORITES },
+  { icon: 'pi pi-user', label: 'Профиль', route: ROUTES.PROFILE },
+  { icon: 'pi pi-cog', label: 'Настройки', route: ROUTES.SETTINGS }
 ];
 </script>
 

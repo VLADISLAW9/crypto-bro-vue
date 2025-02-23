@@ -1,0 +1,44 @@
+{
+  "name": "crypto-bro-vue",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint . --fix",
+    "lint-inspector": "npx @eslint/config-inspector@latest",
+    "type": "tsc --noEmit",
+    "format": "prettier --write .",
+    "pretty": "npm run type && npm run lint && npm run format",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@primeuix/themes": "^1.0.0-rc.1",
+    "@tailwindcss/vite": "^4.0.8",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.2.5",
+    "tailwindcss-primeui": "^0.4.0",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@siberiacancode/eslint": "^2.8.0",
+    "@siberiacancode/prettier": "^1.2.0",
+    "@tsconfig/node22": "^22.0.0",
+    "@types/node": "^22.13.4",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/tsconfig": "^0.7.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.20.1",
+    "jiti": "^2.4.2",
+    "npm-run-all2": "^7.0.2",
+    "postcss": "^8.5.3",
+    "prettier": "^3.5.1",
+    "tailwindcss": "^4.0.8",
+    "typescript": "~5.7.3",
+    "vite": "^6.1.0",
+    "vite-plugin-vue-devtools": "^7.7.2",
+    "vue-tsc": "^2.2.2"
+  }
+}

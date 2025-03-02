@@ -21,3 +21,17 @@ interface CoinListItem {
   symbol: string;
   uuid: string;
 }
+
+type BestCoin = Pick<CoinListItem, 'coinrankingUrl' | 'iconUrl' | 'name' | 'symbol' | 'uuid'>;
+type NewestCoin = BestCoins;
+
+interface Stats {
+  bestCoins: BestCoin[];
+  btcDominance: number;
+  newestCoins: NewestCoin[];
+  total24hVolume: string;
+  totalCoins: number;
+  totalExchanges: number;
+  totalMarketCap: string;
+  totalMarkets: number;
+}

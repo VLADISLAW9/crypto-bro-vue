@@ -3,18 +3,10 @@ import { Column, DataTable } from 'primevue';
 import { onMounted, ref } from 'vue';
 
 import { getCoins } from '@/utils/api/requests';
+import { formatCurrency } from '@/utils/helpers';
 
 const coinList = ref<CoinListItem[]>([]);
 const loading = ref(false);
-
-const formatCurrency = (value: number) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  }).format(value);
-};
 
 onMounted(async () => {
   loading.value = true;

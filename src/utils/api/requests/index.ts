@@ -1,1 +1,1 @@
-export * from './getCoinList';
+export * from './getCoins';

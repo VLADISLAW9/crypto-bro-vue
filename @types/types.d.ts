@@ -1,3 +1,21 @@
+interface MutationSettings<Params = void, Func = unknown> {
+  config?: ApiRequestConfig;
+  options?: import('@tanstack/vue-query').UseMutationOptions<
+    Awaited<ReturnType<Func>>,
+    any,
+    Params,
+    any
+  >;
+}
+
+interface QuerySettings<Func = unknown> {
+  config?: ApiRequestConfig;
+  options?: Omit<
+    import('@tanstack/vue-query').UseQueryOptions<Awaited<ReturnType<Func>>>,
+    'queryKey'
+  >;
+}
+
 interface CoinRankingBaseResponse<DATA> {
   data: DATA;
   status: string;

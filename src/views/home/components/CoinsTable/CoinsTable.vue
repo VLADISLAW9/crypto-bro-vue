@@ -1,28 +1,26 @@
 <script setup lang="ts">
-import { Column, DataTable } from 'primevue';
-import { onMounted, ref } from 'vue';
+import { Button, Column, DataTable } from 'primevue';
 
-import { getCoins } from '@/utils/api/requests';
+import { useGetCoinsQuery } from '@/utils/api/hooks';
 import { formatCurrency } from '@/utils/helpers';
 
-const coinList = ref<CoinListItem[]>([]);
-const loading = ref(false);
+const getCoinsQuery = useGetCoinsQuery();
 
-onMounted(async () => {
-  loading.value = true;
+const toggleFavorite = () => {
+  console.log('sdsadsadsadsadsd');
+};
 
-  const getCoinsResponse = await getCoins();
-
-  if (getCoinsResponse.data.status !== 'success') return;
-
-  coinList.value = getCoinsResponse.data.data.coins;
-  loading.value = false;
-});
+const navigateToCoin = () => {};
 </script>
 
 <template>
   <div class="w-[60%]">
-    <DataTable v-model:loading="loading" :value="coinList" show-gridlines paginator :rows="8">
+    <DataTable
+      :value="getCoinsQuery.data.value?.data.data.coins"
+      show-gridlines
+      paginator
+      :rows="7"
+    >
       <Column field="rank" header="#" style="width: 5%" />
       <Column field="name" header="Монета" style="width: 30%">
         <template #body="{ data }">
@@ -43,6 +41,26 @@ onMounted(async () => {
       <Column field="marketCap" header="Капитализация" style="width: 25%">
         <template #body="{ data }">
           {{ formatCurrency(data.marketCap) }}
+        </template>
+      </Column>
+      <Column field="actions" header="Действия" style="width: 1%">
+        <template #body="">
+          <div class="flex">
+            <Button
+              icon="pi pi-star"
+              severity="contrast"
+              variant="text"
+              rounded
+              @click="toggleFavorite"
+            />
+            <Button
+              icon="pi pi-external-link"
+              severity="contrast"
+              variant="text"
+              rounded
+              @click="navigateToCoin"
+            />
+          </div>
         </template>
       </Column>
     </DataTable>

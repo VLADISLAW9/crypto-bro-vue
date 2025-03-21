@@ -4,7 +4,7 @@ import { coinRankingApi } from '../instance';
 
 type getStatsResponse = FetchesResponse<CoinRankingBaseResponse<Stats>>;
 
-type getStatsConfig = FetchesRequestConfig<{
+export type getStatsConfig = FetchesRequestConfig<{
   referenceCurrencyUuid?: string;
 }>;
 

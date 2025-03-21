@@ -2,16 +2,16 @@ import type { FetchesRequestConfig, FetchesResponse } from '@siberiacancode/fetc
 
 import { coinRankingApi } from '../instance';
 
-type getCoinsResponse = FetchesResponse<
+type GetCoinsResponse = FetchesResponse<
   CoinRankingBaseResponse<{
     coins: CoinListItem[];
   }>
 >;
 
-type getCoinsConfig = FetchesRequestConfig<{
+export type GetCoinsConfig = FetchesRequestConfig<{
   limit?: number;
   offset?: number;
 }>;
 
-export const getCoins = async (config?: getCoinsConfig): Promise<getCoinsResponse> =>
+export const getCoins = async (config?: GetCoinsConfig): Promise<GetCoinsResponse> =>
   await coinRankingApi.get('/coins', config);

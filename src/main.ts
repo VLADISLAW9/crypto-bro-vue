@@ -1,4 +1,5 @@
 import Aura from '@primeuix/themes/aura';
+import { VueQueryPlugin } from '@tanstack/vue-query';
 import PrimeVue from 'primevue/config';
 import { createApp } from 'vue';
 import { createMemoryHistory, createRouter } from 'vue-router';
@@ -21,6 +22,7 @@ const router = createRouter({
 const app = createApp(App);
 
 app.use(router);
+app.use(VueQueryPlugin);
 
 app.use(PrimeVue, {
   theme: {

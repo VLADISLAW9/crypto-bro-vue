@@ -27,17 +27,7 @@ const { stats } = useStatsPanel();
     <div>
       <h1 class="text-xl font-bold mb-5">Лучшие монеты</h1>
       <div class="flex flex-col gap-5">
-        <div
-          v-for="coin in stats.bestCoins"
-          :key="coin.uuid"
-          class="flex bg-surface-800 px-2 py-1 rounded-2xl items-center gap-2"
-        >
-          <img class="w-8 h-8 rounded-full" :src="coin.iconUrl" alt="coin" />
-          <div class="flex flex-col">
-            <span class="text-sm font-bold">{{ coin.name }}</span>
-            <span class="text-sm text-gray-500">{{ coin.symbol }}</span>
-          </div>
-        </div>
+        <CoinCard v-for="coin in stats.bestCoins" :key="coin.uuid" :coin="coin" />
       </div>
     </div>
     <div>

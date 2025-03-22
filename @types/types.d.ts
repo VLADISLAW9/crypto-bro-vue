@@ -94,13 +94,10 @@ interface Coin {
   websiteUrl: string;
 }
 
-type BestCoin = Pick<CoinListItem, 'coinrankingUrl' | 'iconUrl' | 'name' | 'symbol' | 'uuid'>;
-type NewestCoin = BestCoins;
-
 interface Stats {
-  bestCoins: BestCoin[];
+  bestCoins: Coin[];
   btcDominance: number;
-  newestCoins: NewestCoin[];
+  newestCoins: Coin[];
   total24hVolume: string;
   totalCoins: number;
   totalExchanges: number;

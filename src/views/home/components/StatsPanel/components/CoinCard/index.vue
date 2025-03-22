@@ -15,7 +15,7 @@ const { toggleFavoriteCoin, isFavoriteCoin } = useFavoriteCoinsStore();
 
 <template>
   <div class="flex bg-surface-800 px-2 py-1 rounded-2xl items-center gap-2">
-    <div class="flex items-center justify-between w-fu">
+    <div class="flex items-center justify-between w-full">
       <div class="flex gap-3 items-center">
         <img class="w-8 h-8 rounded-full" :src="coin.iconUrl" alt="coin" />
         <div class="flex flex-col">

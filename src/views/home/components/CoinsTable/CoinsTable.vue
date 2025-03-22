@@ -1,25 +1,17 @@
 <script setup lang="ts">
 import { Button, Column, DataTable } from 'primevue';
 
-import { useGetCoinsQuery } from '@/utils/api/hooks';
 import { ROUTES } from '@/utils/constants';
 import { formatCurrency } from '@/utils/helpers';
 
-const getCoinsQuery = useGetCoinsQuery();
+import { useCoinsTable } from './hooks';
 
-const toggleFavorite = () => {
-  console.log('sdsadsadsadsadsd');
-};
+const { coins, toggleFavorite } = useCoinsTable();
 </script>
 
 <template>
   <div class="w-[60%]">
-    <DataTable
-      :value="getCoinsQuery.data.value?.data.data.coins"
-      show-gridlines
-      paginator
-      :rows="7"
-    >
+    <DataTable :value="coins" show-gridlines paginator :rows="7">
       <Column field="rank" header="#" style="width: 5%" />
       <Column field="name" header="Монета" style="width: 30%">
         <template #body="{ data }">

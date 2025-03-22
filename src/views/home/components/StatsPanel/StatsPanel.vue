@@ -1,25 +1,23 @@
 <script setup lang="ts">
-import { useGetStatsQuery } from '@/utils/api/hooks';
 import { formatCurrency } from '@/utils/helpers';
+import { useStatsPanel } from './hooks';
 
-const getStatsQuery = useGetStatsQuery();
+const { stats } = useStatsPanel();
 </script>
 
 <template>
-  <div v-if="getStatsQuery.data.value?.data.data" class="w-[350px] flex flex-col gap-5">
+  <div v-if="stats" class="w-[350px] flex flex-col gap-5">
     <div>
       <h1 class="text-xl font-bold mb-5">Статистика</h1>
       <div class="flex flex-col gap-2">
         <div class="flex items-center gap-2">
           <span class="text-sm text-gray-500">Всего монеток:</span>
-          <span class="text-sm font-bold">
-            {{ getStatsQuery.data.value?.data.data.totalCoins }} шт.</span
-          >
+          <span class="text-sm font-bold"> {{ stats.totalCoins }} шт.</span>
         </div>
         <div class="flex items-center gap-2">
           <span class="text-sm text-gray-500">Общая капитализация:</span>
           <span class="text-sm font-bold">{{
-            formatCurrency(Number(getStatsQuery.data.value?.data.data.totalMarketCap || 0))
+            formatCurrency(Number(stats.totalMarketCap || 0))
           }}</span>
         </div>
       </div>
@@ -28,7 +26,7 @@ const getStatsQuery = useGetStatsQuery();
       <h1 class="text-xl font-bold mb-5">Лучшие монеты</h1>
       <div class="flex flex-col gap-5">
         <div
-          v-for="coin in getStatsQuery.data.value?.data.data.bestCoins"
+          v-for="coin in stats.bestCoins"
           :key="coin.uuid"
           class="flex bg-surface-800 px-2 py-1 rounded-2xl items-center gap-2"
         >
@@ -44,7 +42,7 @@ const getStatsQuery = useGetStatsQuery();
       <h1 class="text-xl font-bold mb-5">Новейшие монеты</h1>
       <div class="flex flex-col gap-5">
         <div
-          v-for="coin in getStatsQuery.data.value?.data.data.newestCoins"
+          v-for="coin in stats.newestCoins"
           :key="coin.uuid"
           class="flex bg-surface-800 px-2 py-1 rounded-2xl items-center gap-2"
         >

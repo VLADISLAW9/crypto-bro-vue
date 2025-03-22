@@ -1,1 +1,1 @@
-export { default as StatsPanel } from './StatsPanel/StatsPanel.vue';
+export { default as StatsPanel } from './StatsPanel/index.vue';

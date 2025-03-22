@@ -4,15 +4,15 @@ export const useFavoriteCoinsStore = defineStore('favoriteCoins', {
   state: () => ({
     favoriteCoins: [] as Coin[]
   }),
-  getters: {
-    favoriteCoinsUUIDs: (state) => state.favoriteCoins.map((coin) => coin.uuid)
-  },
   actions: {
-    addFavoriteCoin(coin: Coin) {
-      this.favoriteCoins.push(coin);
+    isFavoriteCoin(uuid: string) {
+      return this.favoriteCoins.map((item) => item.uuid).includes(uuid);
     },
-    removeFavoriteCoin(uuid: string) {
-      this.favoriteCoins = this.favoriteCoins.filter((coin) => coin.uuid !== uuid);
+    toggleFavoriteCoin(coin: Coin) {
+      if (this.favoriteCoins.map((item) => item.uuid).includes(coin.uuid))
+        return (this.favoriteCoins = this.favoriteCoins.filter((item) => item.uuid !== coin.uuid));
+
+      this.favoriteCoins.push(coin);
     }
   }
 });

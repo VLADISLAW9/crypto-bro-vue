@@ -4,7 +4,7 @@ import { Button, Column, DataTable } from 'primevue';
 import { ROUTES } from '@/utils/constants';
 import { formatCurrency } from '@/utils/helpers';
 
-import { useCoinsTable } from './hooks';
+import { useFavoriteCoinsStore } from '@/utils/stores';
 
 interface CoinsTableProps {
   coins: CoinListItem[];
@@ -12,7 +12,7 @@ interface CoinsTableProps {
 
 const { coins } = defineProps<CoinsTableProps>();
 
-const { toggleFavorite, isFavoriteCoin } = useCoinsTable();
+const { toggleFavoriteCoin, isFavoriteCoin } = useFavoriteCoinsStore();
 </script>
 
 <template>
@@ -48,7 +48,7 @@ const { toggleFavorite, isFavoriteCoin } = useCoinsTable();
               severity="contrast"
               variant="text"
               rounded
-              @click="() => toggleFavorite(data)"
+              @click="() => toggleFavoriteCoin(data)"
             />
             <router-link :to="{ path: `${ROUTES.COIN}/${data.uuid}` }">
               <Button icon="pi pi-external-link" severity="contrast" variant="text" rounded />

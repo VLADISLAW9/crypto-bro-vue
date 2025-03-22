@@ -1,19 +1,15 @@
 <script setup lang="ts">
 import { Button, Column, DataTable } from 'primevue';
-import { useRouter } from 'vue-router';
 
 import { useGetCoinsQuery } from '@/utils/api/hooks';
 import { ROUTES } from '@/utils/constants';
 import { formatCurrency } from '@/utils/helpers';
 
-const router = useRouter();
 const getCoinsQuery = useGetCoinsQuery();
 
 const toggleFavorite = () => {
   console.log('sdsadsadsadsadsd');
 };
-
-const navigateToCoin = (uuid: string) => router.push({ path: `${ROUTES.COIN}/${uuid}` });
 </script>
 
 <template>
@@ -56,13 +52,9 @@ const navigateToCoin = (uuid: string) => router.push({ path: `${ROUTES.COIN}/${u
               rounded
               @click="toggleFavorite"
             />
-            <Button
-              icon="pi pi-external-link"
-              severity="contrast"
-              variant="text"
-              rounded
-              @click="() => navigateToCoin(data.uuid)"
-            />
+            <router-link :to="{ path: `${ROUTES.COIN}/${data.uuid}` }">
+              <Button icon="pi pi-external-link" severity="contrast" variant="text" rounded />
+            </router-link>
           </div>
         </template>
       </Column>

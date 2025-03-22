@@ -1,16 +1,90 @@
 <script setup lang="ts">
+import { ref, watch, computed, type Ref } from 'vue';
 import { useRoute } from 'vue-router';
-
 import { useGetCoinQuery } from '@/utils/api/hooks';
+import { formatCurrency } from '@/utils/helpers';
+import Chart from 'primevue/chart';
+import type { ChartData } from 'chart.js';
 
 const route = useRoute();
+const getCoinQuery = useGetCoinQuery({ params: { uuid: `${route.params.uuid}` } });
 
-const getCoinQuery = useGetCoinQuery({ params: { uuid: route.params.uuid } });
+const coinChartData = ref<ChartData>({
+  labels: [],
+  datasets: [
+    {
+      label: 'Цена за 24 часа',
+      data: [],
+      fill: true,
+      borderColor: 'rgba(52, 211, 153, 1)',
+      tension: 0.1,
+      backgroundColor: 'rgba(52, 211, 153, 0.1)'
+    }
+  ]
+});
+
+const generateTimeLabels = () => Array.from({ length: 23 }, (_, i) => `${i + 1}:00`);
+
+watch(
+  () => getCoinQuery.data.value,
+  (newData) => {
+    if (newData?.data.data.coin) {
+      const sparkline = newData.data.data.coin.sparkline
+        .slice(0, -1)
+        .map((item: string) => Number(item));
+
+      coinChartData.value.labels = generateTimeLabels();
+      coinChartData.value.datasets[0].data = sparkline;
+    }
+  },
+  { immediate: true }
+);
+
+const coin = computed(() => getCoinQuery.data.value?.data.data.coin);
 </script>
 
 <template>
-  <div v-if="getCoinQuery.isLoading">
+  <div v-if="getCoinQuery.isPending.value">
     <p>Loading...</p>
   </div>
-  <div v-if="getCoinQuery.data.value?.data.data.coin">123</div>
+  <div v-else-if="coin">
+    <div class="flex gap-10">
+      <div class="flex w-[30%] flex-col gap-5">
+        <div class="flex gap-3 items-center">
+          <img class="w-7 h-7" :src="coin.iconUrl" alt="coin" />
+          <div class="flex items-end gap-2">
+            <h1 class="text-2xl font-bold">{{ coin.name }}</h1>
+            <p class="text-gray-500 font-semibold">
+              {{ coin.symbol }}
+            </p>
+          </div>
+          <div class="bg-surface-800 px-2 py-0.5 rounded-2xl flex justify-center items-center">
+            <p class="text-sm text-gray-300"># {{ coin.rank }}</p>
+          </div>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold">
+            {{ formatCurrency(Number(coin.price)) }}
+          </h2>
+        </div>
+        <div class="grid gap-3 grid-cols-2">
+          <div class="border border-surface-800 rounded-2xl py-3 text-center">
+            <p class="text-sm text-gray-500">Общая капитализация</p>
+            <p class="text-sm font-bold">
+              {{ formatCurrency(Number(coin.marketCap)) }}
+            </p>
+          </div>
+          <div class="border border-surface-800 rounded-2xl py-3 text-center">
+            <p class="text-sm text-gray-500">Объем за сутки</p>
+            <p class="text-sm font-bold">
+              {{ formatCurrency(Number(coin['24hVolume'])) }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="w-[70%]">
+        <Chart class="h-full w-full" type="line" :data="coinChartData" />
+      </div>
+    </div>
+  </div>
 </template>

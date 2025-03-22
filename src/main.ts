@@ -14,7 +14,8 @@ import { createPinia } from 'pinia';
 
 const routes: RouteRecordRaw[] = [
   { path: ROUTES.HOME, component: () => import('./views/home/index.vue') },
-  { path: `${ROUTES.COIN}/:uuid`, component: () => import('./views/coin/index.vue') }
+  { path: `${ROUTES.COIN}/:uuid`, component: () => import('./views/coin/index.vue') },
+  { path: ROUTES.FAVORITE, component: () => import('./views/favorite/index.vue') }
 ];
 
 const pinia = createPinia();

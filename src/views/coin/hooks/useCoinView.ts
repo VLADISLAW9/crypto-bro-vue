@@ -7,8 +7,6 @@ export const useCoinView = () => {
   const route = useRoute();
   const getCoinQuery = useGetCoinQuery({ params: { uuid: `${route.params.uuid}` } });
 
-  const coin = computed(() => getCoinQuery.data.value?.data.data.coin);
-
   const coinChartData = ref<ChartData>({
     labels: [],
     datasets: [
@@ -40,7 +38,7 @@ export const useCoinView = () => {
 
   return {
     isPending: computed(() => getCoinQuery.isPending.value),
-    coin,
+    coin: computed(() => getCoinQuery.data.value?.data.data.coin),
     coinChartData
   };
 };

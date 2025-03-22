@@ -6,7 +6,13 @@ import { formatCurrency } from '@/utils/helpers';
 
 import { useCoinsTable } from './hooks';
 
-const { coins, toggleFavorite } = useCoinsTable();
+interface CoinsTableProps {
+  coins: CoinListItem[];
+}
+
+const { coins } = defineProps<CoinsTableProps>();
+
+const { toggleFavorite, isFavoriteCoin } = useCoinsTable();
 </script>
 
 <template>
@@ -38,11 +44,11 @@ const { coins, toggleFavorite } = useCoinsTable();
         <template #body="{ data }">
           <div class="flex">
             <Button
-              icon="pi pi-star"
+              :icon="isFavoriteCoin(data.uuid) ? 'pi pi-star-fill' : 'pi pi-star'"
               severity="contrast"
               variant="text"
               rounded
-              @click="toggleFavorite"
+              @click="() => toggleFavorite(data)"
             />
             <router-link :to="{ path: `${ROUTES.COIN}/${data.uuid}` }">
               <Button icon="pi pi-external-link" severity="contrast" variant="text" rounded />

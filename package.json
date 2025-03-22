@@ -19,6 +19,7 @@
     "@tailwindcss/vite": "^4.0.8",
     "@tanstack/vue-query": "^5.67.2",
     "chart.js": "^4.4.8",
+    "pinia": "^3.0.1",
     "primeicons": "^7.0.0",
     "primevue": "^4.2.5",
     "tailwindcss-primeui": "^0.4.0",

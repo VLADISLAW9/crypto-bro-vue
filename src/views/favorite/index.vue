@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { CoinsTable } from '@/components';
+
 import { useFavoriteView } from './hooks';
 
 const { favoriteCoins } = useFavoriteView();

@@ -1,5 +1,6 @@
-import { useGetCoinsQuery } from '@/utils/api/hooks';
 import { computed } from 'vue';
+
+import { useGetCoinsQuery } from '@/utils/api/hooks';
 
 export const useHomeView = () => {
   const getStatsQuery = useGetCoinsQuery();

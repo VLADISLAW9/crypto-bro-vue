@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { formatCurrency } from '@/utils/helpers';
+import { Button } from 'primevue';
 import Chart from 'primevue/chart';
 
-import { Button } from 'primevue';
+import { formatCurrency } from '@/utils/helpers';
+
 import { useCoinView } from './hooks';
 
 const { coin, coinChartData, isPending } = useCoinView();

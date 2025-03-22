@@ -2,6 +2,7 @@ import type { RouteRecordRaw } from 'vue-router';
 
 import Aura from '@primeuix/themes/aura';
 import { VueQueryPlugin } from '@tanstack/vue-query';
+import { createPinia } from 'pinia';
 import PrimeVue from 'primevue/config';
 import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
@@ -10,7 +11,6 @@ import App from './App.vue';
 import { ROUTES } from './utils/constants';
 
 import './index.css';
-import { createPinia } from 'pinia';
 
 const routes: RouteRecordRaw[] = [
   { path: ROUTES.HOME, component: () => import('./views/home/index.vue') },

@@ -1,7 +1,9 @@
-import { useGetCoinQuery } from '@/utils/api/hooks';
 import type { ChartData } from 'chart.js';
+
 import { computed, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
+
+import { useGetCoinQuery } from '@/utils/api/hooks';
 
 export const useCoinView = () => {
   const route = useRoute();

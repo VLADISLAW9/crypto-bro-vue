@@ -1,12 +1,9 @@
-import { useGetStatsQuery } from '@/utils/api/hooks';
-import { useFavoriteCoinsStore } from '@/utils/stores';
 import { computed } from 'vue';
 
-export const useStatsPanel = () => {
-  const favoriteCoinsStore = useFavoriteCoinsStore();
-  const getStatsQuery = useGetStatsQuery();
+import { useGetStatsQuery } from '@/utils/api/hooks';
 
-  const addFavoriteCoin = (coin: Coin) => favoriteCoinsStore.addFavoriteCoin(coin);
+export const useStatsPanel = () => {
+  const getStatsQuery = useGetStatsQuery();
 
   return {
     stats: computed(() => getStatsQuery.data.value?.data.data)

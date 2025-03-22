@@ -3,7 +3,6 @@ import { Button, Column, DataTable } from 'primevue';
 
 import { ROUTES } from '@/utils/constants';
 import { formatCurrency } from '@/utils/helpers';
-
 import { useFavoriteCoinsStore } from '@/utils/stores';
 
 interface CoinsTableProps {

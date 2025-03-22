@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { StatsPanel } from './components';
 import { CoinsTable } from '@/components';
+
+import { StatsPanel } from './components';
 import { useHomeView } from './hooks';
 
 const { coins } = useHomeView();
